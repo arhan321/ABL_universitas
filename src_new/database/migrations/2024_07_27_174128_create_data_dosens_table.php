@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('email');
             $table->dateTime('ttl');
             $table->string('kode_dosen');
+            $table->string('alamat');
+            $table->string('jabatan_fungsional');
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'budha', 'konghucu']);
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->enum('status', ['aktif', 'nonaktif']);
             $table->timestamps();
         });
     }

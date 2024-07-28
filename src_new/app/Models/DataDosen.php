@@ -10,5 +10,5 @@ class DataDosen extends Model
     use HasFactory;
     protected $connection = 'mysql';
     protected $table = 'DataDosen';
-    protected $fillable = ['nama_dosen', 'lulusan', 'email', 'ttl', 'kode_dosen'];
+    protected $fillable = ['nama_dosen', 'lulusan', 'email', 'ttl', 'kode_dosen','alamat','agama','jenis_kelamin','jabatan_fungsional','status'];
 }

@@ -22,4 +22,9 @@ class DataMahasiswa extends Model
         'jurusan',
         'status',
     ];
+    
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'mahasiswa_id');
+    }
 }

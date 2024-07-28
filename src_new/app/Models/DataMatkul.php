@@ -11,4 +11,9 @@ class DataMatkul extends Model
     protected $connection = 'mysql';
     protected $table = 'data_matkuls';
     protected $fillable = ['nama_matkul', 'kode_matkul', 'sks', 'semester', 'kurikulum'];
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'matakuliah_id');
+    }
 }

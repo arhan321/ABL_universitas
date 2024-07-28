@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\DataDosenController;
 use App\Http\Controllers\DataStaffController;
 use App\Http\Controllers\DataMatkulController;
@@ -47,4 +48,12 @@ Route::group(['prefix' => 'api/v1/staff', 'middleware' => 'auth'], function() {
     Route::post('/', [DataStaffController::class, 'create']);
     Route::put('/{id}', [DataStaffController::class, 'update']);
     Route::delete('/{id}', [DataStaffController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'api/v1/nilai', 'middleware' => 'auth'], function() {
+    Route::get('/', [NilaiController::class, 'index']);
+    Route::get('/{id}', [NilaiController::class, 'get_nilai']);
+    Route::post('/', [NilaiController::class, 'create']);
+    Route::put('/{id}', [NilaiController::class, 'update']);
+    Route::delete('/{id}', [NilaiController::class, 'delete']);
 });

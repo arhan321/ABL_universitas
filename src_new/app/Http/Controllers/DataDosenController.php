@@ -31,6 +31,11 @@ class DataDosenController extends Controller
             'email' => 'nullable|string|email|max:255|unique:data_dosens,email',
             'ttl' => 'nullable|date_format:Y-m-d H:i:s',
             'kode_dosen' => 'nullable|string|max:100|unique:data_dosens,kode_dosen',
+            'alamat' => 'nullable|string|max:255',
+            'agama' => 'nullable|in:islam,kristen,katolik,hindu,budha,konghucu',
+            'jenis_kelamin' => 'nullable|in:laki-laki,perempuan',
+            'jabatan_fungsional' => 'nullable|string|max:255',
+            'status' => 'nullable|in:aktif,nonaktif',
         ]);
 
         $dataDosen = DB::connection('mysql')->table('data_dosens')->insert([
@@ -39,6 +44,11 @@ class DataDosenController extends Controller
             'email' => $request->input('email'),
             'ttl' => $request->input('ttl'),
             'kode_dosen' => $request->input('kode_dosen'),
+            'alamat' => $request->input('alamat'),
+            'agama' => $request->input('agama'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
+            'jabatan_fungsional' => $request->input('jabatan_fungsional'),
+            'status' => $request->input('status'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -58,6 +68,11 @@ class DataDosenController extends Controller
             'email' => 'sometimes|required|string|email|max:255|unique:data_dosens,email,' . $id,
             'ttl' => 'sometimes|required|date_format:Y-m-d H:i:s',
             'kode_dosen' => 'sometimes|required|string|max:100|unique:data_dosens,kode_dosen,' . $id,
+            'alamat' => 'sometimes|required|string|max:255',
+            'agama' => 'sometimes|required|in:islam,kristen,katolik,hindu,budha,konghucu',
+            'jenis_kelamin' => 'sometimes|required|in:laki-laki,perempuan',
+            'jabatan_fungsional' => 'sometimes|required|string|max:255',
+            'status' => 'sometimes|required|in:aktif,nonaktif',
         ]);
 
         $data['updated_at'] = now();
