@@ -22,11 +22,11 @@ membuat REST API dengan studi kasus `UNIVERSITAS`
 |    |-- data (folder engine database)
 |    |-- conf.d (folder untuk kebutuhan tune up SERVER DB (optional) )
 |    
-|-- nginx (folder untuk memanggil depedency / kebutuhan nginx)
+|-- nginx (folder untuk memanggil depedency / kebutuhan NGINX)
 |    |--dockerfile (memanggil depedency nginx)
 |    |--default.conf (mengkonfig webserver nginx)
 |    
-|-- php
+|-- php (folder untuk memanggil depedency / kebutuhan PHP)
 |    |-- docker-entrypoint.sh (memanggil kebutuhan php for laravel)
 |    |-- dockerfile (memanggil depedency php, composer)
 |    |-- local.ini (untuk mengkonfigurasi memory_limit & upload_max_filesize dan yang lain lain)
