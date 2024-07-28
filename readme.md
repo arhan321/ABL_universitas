@@ -19,6 +19,9 @@ membuat REST API dengan studi kasus `UNIVERSITAS`
 # struktur folder dan penjelasan
 ```plaintext
 |-- database (folder server database)
+|    |-- data (folder engine database)
+|    |-- conf.d (folder untuk kebutuhan tune up SERVER DB (optional) )
+|    
 |-- nginx (folder untuk memanggil depedency / kebutuhan nginx)
 |    |--dockerfile (memanggil depedency nginx)
 |    |--default.conf (mengkonfig webserver nginx)
