@@ -98,7 +98,7 @@ jadi disini kita untuk API key nya kita set static yaitu : (password), untuk val
 
 setelah itu silahkan bikin `MVC` nya, dengan perintah : 
 ```
-php artisan make:model -mc DataDosen
+php artisan make:model -mc DataDosen 
 php artisan make:model -mc DataMahasiswa
 php artisan make:model -mc DataStaff
 php artisan make:model -mc DataMatakuliah
