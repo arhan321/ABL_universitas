@@ -158,7 +158,7 @@ Route::group(['prefix' => 'api/v1/nilai', 'middleware' => 'auth'], function() {
 });
 ```
 
-selanjutnya ini adalah informasi untuk parameter untuk ekskusi pada tools kita (postman): 
+selanjutnya ini adalah informasi untuk parameter untuk ekskusi pada `tools` kita `(postman)`: 
 ```
 localhost:85/api/v1/dosen
 localhost:85/api/v1/mahasiswa
