@@ -16,6 +16,8 @@ Route::group(['prefix' => 'api/v1/account', 'middleware' => 'auth'], function() 
     Route::get('/', [UserController::class, 'index']);
     Route::get('/{id}', [UserController::class, 'get_user']);
     Route::post('/', [UserController::class, 'create']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'api/v1/dosen', 'middleware' => 'auth'], function() {

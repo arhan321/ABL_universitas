@@ -52,4 +52,42 @@ class NilaiController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'mahasiswa_id' => 'required|integer',
+            'matakuliah_id' => 'required|integer',
+            'tugas' => 'required|numeric',
+            'quis' => 'required|numeric',
+            'uts' => 'required|numeric',
+            'uas' => 'required|numeric',
+        ]);
+
+        $dataNilai = DB::connection('mysql')->table('nilais')->where('id', $id)->update([
+            'mahasiswa_id' => $request->input('mahasiswa_id'),
+            'matakuliah_id' => $request->input('matakuliah_id'),
+            'tugas' => $request->input('tugas'),
+            'quis' => $request->input('quis'),
+            'uts' => $request->input('uts'),
+            'uas' => $request->input('uas'),
+            'updated_at' => now(),
+        ]);
+
+        if ($dataNilai) {
+            return response()->json(['message' => 'Nilai berhasil diperbarui !!'], 200);
+        } else {
+            return response()->json(['message' => 'Gagal memperbarui data nilai'], 500);
+        }
+    }
+
+    public function delete($id)
+    {
+        $dataNilai = DB::connection('mysql')->table('nilais')->where('id', $id)->delete();
+
+        if ($dataNilai) {
+            return response()->json(['message' => 'Nilai berhasil dihapus !!'], 200);
+        } else {
+            return response()->json(['message' => 'Gagal menghapus data nilai'], 500);
+        }
+    }
 }
