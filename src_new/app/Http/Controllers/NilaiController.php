@@ -55,24 +55,19 @@ class NilaiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'mahasiswa_id' => 'required|integer',
-            'matakuliah_id' => 'required|integer',
-            'tugas' => 'required|numeric',
-            'quis' => 'required|numeric',
-            'uts' => 'required|numeric',
-            'uas' => 'required|numeric',
+            'mahasiswa_id' => 'sometimes|integer',
+            'matakuliah_id' => 'sometimes|integer',
+            'tugas' => 'sometimes|numeric',
+            'quis' => 'sometimes|numeric',
+            'uts' => 'sometimes|numeric',
+            'uas' => 'sometimes|numeric',
         ]);
-
-        $dataNilai = DB::connection('mysql')->table('nilais')->where('id', $id)->update([
-            'mahasiswa_id' => $request->input('mahasiswa_id'),
-            'matakuliah_id' => $request->input('matakuliah_id'),
-            'tugas' => $request->input('tugas'),
-            'quis' => $request->input('quis'),
-            'uts' => $request->input('uts'),
-            'uas' => $request->input('uas'),
-            'updated_at' => now(),
-        ]);
-
+    
+        $dataToUpdate = $request->only(['mahasiswa_id', 'matakuliah_id', 'tugas', 'quis', 'uts', 'uas']);
+        $dataToUpdate['updated_at'] = now();
+    
+        $dataNilai = DB::connection('mysql')->table('nilais')->where('id', $id)->update($dataToUpdate);
+    
         if ($dataNilai) {
             return response()->json(['message' => 'Nilai berhasil diperbarui !!'], 200);
         } else {
@@ -90,4 +85,7 @@ class NilaiController extends Controller
             return response()->json(['message' => 'Gagal menghapus data nilai'], 500);
         }
     }
+
+    
+    
 }

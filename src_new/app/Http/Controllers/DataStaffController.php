@@ -35,18 +35,6 @@ class DataStaffController extends Controller
             'status' => 'nullable|in:aktif,nonaktif',
         ]);
     
-        if ($request->input('nama_karyawan') && DB::connection('mysql')->table('data_staff')->where('nama_karyawan', $request->input('nama_staff'))->exists()) {
-            return response()->json(['message' => 'Nama staff sudah terdaftar!'], 409);
-        }
-        
-        if ($request->input('kode_pekerja') && DB::connection('mysql')->table('data_staff')->where('kode_pekerja', $request->input('kode_pekerja'))->exists()) {
-            return response()->json(['message' => 'Kode pekerja sudah terdaftar!'], 409);
-        }
-        
-        if ($request->input('email') && DB::connection('mysql')->table('data_staff')->where('email', $request->input('email'))->exists()) {
-            return response()->json(['message' => 'Email sudah terdaftar!'], 409);
-        }
-        
         $dataStaff = DB::connection('mysql')->table('data_staff')->insert([
             'nama_karyawan' => $request->input('nama_karyawan'),
             'kode_pekerja' => $request->input('kode_pekerja'),
@@ -68,4 +56,43 @@ class DataStaffController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_karyawan' => 'sometimes|string|max:255|unique:data_staff,nama_karyawan,' . $id,
+            'kode_pekerja' => 'sometimes|string|max:100|unique:data_staff,kode_pekerja,' . $id,
+            'email' => 'sometimes|string|email|max:255|unique:data_staff,email,' . $id,
+            'ttl' => 'sometimes|date_format:Y-m-d H:i:s',
+            'jenis_kelamin' => 'sometimes|in:laki-laki,perempuan',
+            'agama' => 'sometimes|in:islam,kristen,katolik,hindu,budha,konghucu',
+            'alamat' => 'sometimes|string|max:255',
+            'jabatan_fungsional' => 'sometimes|string|max:255',
+            'status' => 'sometimes|in:aktif,nonaktif',
+        ]);
+    
+        $data = $request->only([
+            'nama_karyawan', 'kode_pekerja', 'email', 'ttl', 'jenis_kelamin', 
+            'agama', 'alamat', 'jabatan_fungsional', 'status'
+        ]);
+        $data['updated_at'] = now();
+    
+        $dataStaff = DB::connection('mysql')->table('data_staff')->where('id', $id)->update($data);
+    
+        if ($dataStaff) {
+            return response()->json(['message' => 'Data staff berhasil diperbarui!'], 200);
+        } else {
+            return response()->json(['message' => 'Gagal memperbarui data staff'], 500);
+        }
+    }
+
+    public function delete($id)
+    {
+        $dataStaff = DB::connection('mysql')->table('data_staff')->where('id', $id)->delete();
+
+        if ($dataStaff) {
+            return response()->json(['message' => 'Data staff berhasil dihapus!'], 200);
+        } else {
+            return response()->json(['message' => 'Gagal menghapus data staff'], 500);
+        }
+    }
 }

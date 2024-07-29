@@ -30,7 +30,7 @@ Route::group(['prefix' => 'api/v1/dosen', 'middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'api/v1/mahasiswa', 'middleware' => 'auth'], function() {
     Route::get('/', [DataMahasiswaController::class, 'index']);
-    Route::get('/{id}', [DataMahasiswaController::class, 'get_dosen']);
+    Route::get('/{id}', [DataMahasiswaController::class, 'get_mahasiswa']);
     Route::post('/', [DataMahasiswaController::class, 'create']);
     Route::put('/{id}', [DataMahasiswaController::class, 'update']);
     Route::delete('/{id}', [DataMahasiswaController::class, 'delete']);
