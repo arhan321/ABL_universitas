@@ -55,7 +55,7 @@ DB_USERNAME=root
 DB_PASSWORD=123
 ```
 
-setelah itu silahkan atur untuk authentikasinya, ke authenticate middleware : 
+setelah itu silahkan atur untuk `authentikasinya`, ke `authenticate middleware` : 
 ```
 class Authenticate extends Middleware
 {
@@ -96,7 +96,7 @@ class Authenticate extends Middleware
 jadi disini kita untuk API key nya kita set static yaitu : (password), untuk value nya berdasarkan dengan password account yang ada pada table users..
 ```
 
-setelah itu silahkan bikin MVC nya, dengan perintah : 
+setelah itu silahkan bikin `MVC` nya, dengan perintah : 
 ```
 php artisan make:model -mc DataDosen
 php artisan make:model -mc DataMahasiswa
@@ -104,6 +104,10 @@ php artisan make:model -mc DataStaff
 php artisan make:model -mc DataMatakuliah
 php artisan make:model -mc DataNilai
 ```
+
+setelah itu silahkan set `migration` dan `model` beserta `controller` dari yang sudah kita bikin, semua datanya sudah ada pada laravel saya, bisa cek pada `migration`, `model`, serta `controller` nya.
+
+
 
 # dosen
 
